@@ -1,0 +1,9 @@
+[submodule "back/app"]
+	path = back/app
+	url = git@github.com:transcendance-ryve/back.git
+[submodule "front/front/app"]
+	path = front/front/app
+	url = git@github.com:transcendance-ryve/front.git
+[submodule "front/app"]
+	path = front/app
+	url = git@github.com:transcendance-ryve/front.git
