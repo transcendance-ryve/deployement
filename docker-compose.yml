@@ -6,13 +6,12 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:5432:5432"
-    volumes:
-    - ./data/db:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: "seth"
-      POSTGRES_USER: "seth"
-      POSTGRES_PASSWORD: "seth"
-      PG_DATA: /var/lib/postgresql/data
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - db:/var/lib/postgresql/data
 
   back:
     image: back
@@ -25,7 +24,7 @@ services:
       - .env
     restart: unless-stopped
     volumes:
-      - ./data/images:/app/data
+      - back-data:/app/data
 
   front:
     image: front
@@ -43,4 +42,9 @@ services:
     ports:
       - "5050:80"
     volumes:
-      - ./data/pgadmin:/var/lib/pgadmin
+      - pgadmin:/var/lib/pgadmin
+
+volumes:
+  db:
+  back-data:
+  pgadmin:
